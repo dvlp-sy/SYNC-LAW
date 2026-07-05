@@ -2,14 +2,14 @@ bootJar { enabled = true }
 jar { enabled = false }
 
 ext {
-    set('springCloudVersion', "2025.0.0")
+    set('springCloudVersion', "2025.1.2")
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    runtimeOnly 'org.postgresql:postgresql'
 }
 
 dependencyManagement {
