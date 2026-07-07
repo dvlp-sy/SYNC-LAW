@@ -1,4 +1,0 @@
-rootProject.name = 'sync-law-backend'
-
-include 'sync-law-api-server'
-include 'sync-law-ingestion'

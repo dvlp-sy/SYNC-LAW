@@ -1,0 +1,6 @@
+rootProject.name = 'sync-law-ingestion'
+
+include 'ingestion-presentation'
+include 'ingestion-core'
+include 'ingestion-infra'
+include 'ingestion-app'
