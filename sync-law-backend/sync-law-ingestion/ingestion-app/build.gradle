@@ -6,7 +6,7 @@ dependencies {
     implementation project(':ingestion-core')
     implementation project(':ingestion-infra')
 
+    implementation 'org.springframework:spring-tx'
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
