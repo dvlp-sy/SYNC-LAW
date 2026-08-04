@@ -13,7 +13,6 @@ class LawFetchAdapter implements LawFetchPort {
 
     private static final String TARGET = "law";
     private static final String RESPONSE_TYPE = "JSON";
-    private static final int DISPLAY_COUNT = 10;
 
     private final String apiKey;
     private final LawApiClient lawApiClient;
@@ -27,9 +26,9 @@ class LawFetchAdapter implements LawFetchPort {
     }
 
     @Override
-    public LawArticles fetchLawSearchResults(String query, int page) {
+    public LawArticles fetchLawSearchResults(String query, int page, int display) {
         return lawApiClient
-                .getLawArticles(apiKey, TARGET, RESPONSE_TYPE, query, DISPLAY_COUNT, page)
+                .getLawArticles(apiKey, TARGET, RESPONSE_TYPE, query, display, page)
                 .toLawArticles();
     }
 
@@ -37,7 +36,6 @@ class LawFetchAdapter implements LawFetchPort {
     public LawDetail fetchLawDetail(String masterId) {
         LawDetailResponse response = lawApiClient
                 .getLawDetail(apiKey, TARGET, RESPONSE_TYPE, masterId);
-        //TODO: 변환 로직 구현
-        return null;
+        return response.toLawDetail();
     }
 }

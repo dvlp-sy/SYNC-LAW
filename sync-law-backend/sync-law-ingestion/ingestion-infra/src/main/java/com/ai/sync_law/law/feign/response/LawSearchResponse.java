@@ -1,5 +1,6 @@
 package com.ai.sync_law.law.feign.response;
 
+import com.ai.sync_law.law.LawArticle;
 import com.ai.sync_law.law.LawArticles;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -35,15 +36,18 @@ public record LawSearchResponse(
     ) {}
 
     public LawArticles toLawArticles() {
+        if (lawSearchStatus == null || lawSearchStatus.lawList() == null) {
+            return new LawArticles(List.of(), 0);
+        }
         return new LawArticles(lawSearchStatus.lawList.stream()
-                .map(lawSearchResult -> new LawArticles.LawArticle(
+                .map(lawSearchResult -> new LawArticle(
                         lawSearchResult.lawId(),
                         lawSearchResult.lawSequenceNumber(),
                         lawSearchResult.lawNameKorean(),
                         lawSearchResult.departmentName(),
                         lawSearchResult.enforcementDate(),
-                        lawSearchResult.lawDetailLink()
-                ))
-                .toList());
+                        lawSearchResult.lawDetailLink()))
+                .toList(),
+                Integer.parseInt(lawSearchStatus.totalCount()));
     }
 }
